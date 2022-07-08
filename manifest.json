@@ -1,0 +1,10 @@
+{
+  "name": "Schnell Layout",
+  "id": "1127303485921047861",
+  "api": "1.0.0",
+  "main": "dist/bundle.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "src/ui.html"
+}

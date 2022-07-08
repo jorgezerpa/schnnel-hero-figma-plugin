@@ -1,0 +1,50 @@
+<h2>Choose a heroe</h2>
+<div id="items">
+  <!-- js generated  -->
+</div>
+
+
+<p>Count: <input id="count" value="5"></p>
+<button id="create-rectangles">Create Rectangles</button>
+<button id="create-stars">Create Stars</button>
+<button id="cancel">Cancel</button>
+
+
+<script type="module">
+  onmessage = (e) => {
+    const data = JSON.parse(e.data.pluginMessage); 
+    const items = document.getElementById('items');
+
+    for(let i = 0; i<data.quantity; i++){
+      const div = `
+        <button class='headerItem'>${i+1}</button>
+      `;
+      items.innerHTML += div;
+    }
+    
+    const headerItems = document.querySelectorAll('.headerItem')
+    headerItems.forEach((item, index)=>{
+      item.addEventListener('click', ()=>{
+        parent.postMessage({ pluginMessage: { type: 'create'+data.name+index } }, '*')
+      })
+    })
+  };
+
+
+document.getElementById('create-rectangles').onclick = () => {
+  const textbox = document.getElementById('count');
+  const count = parseInt(textbox.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
+}
+
+document.getElementById('create-stars').onclick = () => {
+  const textbox = document.getElementById('count');
+  const count = parseInt(textbox.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-stars', count } }, '*')
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>
