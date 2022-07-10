@@ -1,17 +1,18 @@
 import headers from './layouts/headers/index';
 
-figma.showUI(__html__);
+const thumbs = headers.layouts.map((thumb)=>thumb.thumb);
 
-figma.ui.postMessage( JSON.stringify({ name: headers.name, quantity: headers.layouts.length }));
+figma.showUI(__html__, {themeColors: true });
+figma.ui.resize(600, 400);
 
-figma.ui.onmessage = msg => {
-  if (msg.type === 'create'+headers.name+'1') {
-    const frame = headers.layouts[1]();
-    figma.currentPage.appendChild(frame);
-  }
-  else {
-    const frame = headers.layouts[0]();
-    figma.currentPage.appendChild(frame);
+figma.ui.postMessage( JSON.stringify({ name: headers.name, quantity: headers.layouts.length, thumbs: thumbs }));
+
+figma.ui.onmessage = async(msg) => {
+  for(let i = 0; i<headers.layouts.length; i++){
+    if (msg.type === 'create'+headers.name+i) {
+      const frame = await headers.layouts[i].element();
+      figma.currentPage.appendChild(frame);
+    }
   }
 
 

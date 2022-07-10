@@ -1,13 +1,30 @@
-<h2>Choose a heroe</h2>
-<div id="items">
+<style>
+  body {
+  background-color: var(--figma-color-bg);
+  color: var(--figma-color-text);
+  }
+  .heroesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
+  .heroContainerItem{
+    border: 1px solid rgba(0, 0, 0, .2);
+  }
+
+</style>
+
+
+
+
+
+<h2 class="title">Choose a heroe</h2>
+</div>  
+<div id="items" class="heroesContainer">
   <!-- js generated  -->
 </div>
-
-
-<p>Count: <input id="count" value="5"></p>
-<button id="create-rectangles">Create Rectangles</button>
-<button id="create-stars">Create Stars</button>
-<button id="cancel">Cancel</button>
 
 
 <script type="module">
@@ -17,34 +34,18 @@
 
     for(let i = 0; i<data.quantity; i++){
       const div = `
-        <button class='headerItem'>${i+1}</button>
-      `;
-      items.innerHTML += div;
-    }
+        <div class='heroContainerItem'>
+          ${ data.thumbs[i] }
+        </div>
+          `;
+          items.innerHTML += div;
+        }
     
-    const headerItems = document.querySelectorAll('.headerItem')
+    const headerItems = document.querySelectorAll('.heroContainerItem')
     headerItems.forEach((item, index)=>{
       item.addEventListener('click', ()=>{
         parent.postMessage({ pluginMessage: { type: 'create'+data.name+index } }, '*')
       })
     })
   };
-
-
-document.getElementById('create-rectangles').onclick = () => {
-  const textbox = document.getElementById('count');
-  const count = parseInt(textbox.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
-}
-
-document.getElementById('create-stars').onclick = () => {
-  const textbox = document.getElementById('count');
-  const count = parseInt(textbox.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'create-stars', count } }, '*')
-}
-
-document.getElementById('cancel').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-}
-
 </script>

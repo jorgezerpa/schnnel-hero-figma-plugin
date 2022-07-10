@@ -1,5 +1,14 @@
-{
+{  
+  "include": [
+    "./src/**/*.ts",
+  ],
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@thumbs/*": ["assets/*"],
+      "@utils/*": ["utils/*"]
+    },
     "target": "es6",
     "lib": ["es6"],
     "typeRoots": [
