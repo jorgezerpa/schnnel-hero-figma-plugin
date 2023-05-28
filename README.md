@@ -1,6 +1,6 @@
 # Schnnel Hero (Hero section generator for Figma)
 
-This plugin displays a ready-to-edit hero or banner wireframe. When the plugin is open, a modal is displayed on the screen, on this modal user can click to select one template, and this will be rendered on the working table.
+This plugin displays a ready-to-edit hero or banner wireframe. When the plugin is open, a modal is displayed on the screen, on this modal user can click to select one template, and this will be rendered on the working table. try the plugin here -> https://www.figma.com/community/plugin/1127303485921047861/Schnell-wireframe
 
 ## Below are the steps to get your plugin running. You can also find instructions at:
 
